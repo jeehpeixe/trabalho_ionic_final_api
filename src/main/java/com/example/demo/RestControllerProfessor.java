@@ -40,7 +40,7 @@ public class RestControllerProfessor {
     }
     
     private Professor getProfInit(long codigo){
-        return new Professor(codigo, "Jessica Peixe"+codigo, "2011-11-11T03:00:00.000Z", "", "aaaaaa", true);
+        return new Professor(codigo, "Professor "+codigo, "2011-11-11T03:00:00.000Z", "", "aaaaaa", true);
     }
     
     @ApiOperation("Busca todos os professores da lista")
