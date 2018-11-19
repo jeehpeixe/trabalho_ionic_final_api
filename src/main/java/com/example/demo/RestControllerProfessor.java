@@ -84,7 +84,7 @@ public class RestControllerProfessor {
     @ApiOperation("Cria um novo professor e o adiciona na lista")
     @PostMapping
     public ResponseEntity<ResourceProfessor> criaProfessor(@RequestBody Professor professor){
-        professor.setId(professores.size() + 1l);
+        professor.setId(getMaxId());
         professores.add(professor);
         return new ResponseEntity<>(assembler.toResource(professor), HttpStatus.OK);
     }
@@ -112,5 +112,15 @@ public class RestControllerProfessor {
             }
         }
         return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    
+    private long getMaxId(){
+        long ultimo = 0;
+        for (Professor professor : professores) {
+            if (professor.getId() > ultimo) {
+                ultimo = professor.getId();
+            }
+        }
+        return ultimo + 1;
     }
 }
